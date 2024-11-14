@@ -1,5 +1,7 @@
 FROM arakurumi/mltb:latest
 
+RUN python -m venv mltb
+
 COPY . .
 
-RUN pip install --break-system-packages --no-cache-dir --requirement requirements.txt
+RUN mltb/bin/pip install --no-cache-dir --requirement requirements.txt
