@@ -1,6 +1,6 @@
 FROM arakurumi/mltb:latest
 
-RUN python -m venv mltb
+RUN python -m venv --system-site-packages mltb
 
 COPY . .
 
