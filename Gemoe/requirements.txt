@@ -1,6 +1,7 @@
 aiofiles
 aioshutil
 apscheduler
+blinker
 bs4
 deep-translator
 emoji
