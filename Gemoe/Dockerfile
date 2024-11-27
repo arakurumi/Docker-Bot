@@ -2,7 +2,7 @@ FROM arakurumi/myne:ubuntu
 
 COPY . .
 
-RUN apt-get --yes install python3-venv
+RUN apt-get install --yes python3-venv
 
 RUN python -m venv --system-site-packages gemoe
 
