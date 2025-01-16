@@ -17,12 +17,10 @@ lxml
 motor
 natsort
 pillow
-pproxy
 psutil
 pycurl
 pymongo
 pyrofork
-python-dotenv
 python-magic
 qbittorrent-api
 requests
@@ -33,4 +31,4 @@ TgCrypto-pyrofork
 urllib3
 uvloop
 xattr
-yt-dlp[default]
+yt-dlp[default,curl-cffi]
