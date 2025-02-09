@@ -21,6 +21,7 @@ niquests[socks]
 openai
 Pillow
 psutil
+pycryptodome
 pycurl
 pyrofork
 python-dotenv
