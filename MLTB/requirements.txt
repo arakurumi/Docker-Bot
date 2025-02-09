@@ -29,6 +29,7 @@ telegraph
 tenacity
 TgCrypto-pyrofork
 urllib3
+uvicorn
 uvloop
 xattr
 yt-dlp[default,curl-cffi]
