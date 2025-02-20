@@ -7,7 +7,7 @@ emoji
 flask
 gallery-dl
 gevent
-google-generativeai
+google-genai
 gradio_client
 gunicorn
 humanize
@@ -15,7 +15,6 @@ langcodes
 lxml
 m3u8
 mal-api
-meta-ai-api
 mutagen
 niquests[socks]
 openai
