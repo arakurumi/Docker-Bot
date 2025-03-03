@@ -18,6 +18,7 @@ lxml
 motor
 natsort
 pillow
+pproxy[accelerated]
 psutil
 pycurl
 pymongo
