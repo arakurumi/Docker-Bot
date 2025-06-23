@@ -5,17 +5,17 @@ on:
     paths:
       - "Dockerfile"
       - "requirements.txt"
-  
+
   schedule:
     - cron: "0 0 * * *"
-  
+
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-24.04
 
-    steps:      
+    steps:
       - name: Login to Docker.io
         uses: docker/login-action@master
         with:
