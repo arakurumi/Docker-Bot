@@ -1,4 +1,4 @@
 #!/bin/sh
-source mltb/bin/activate
+source /app/mltb/bin/activate
 python update.py
 python -m bot
