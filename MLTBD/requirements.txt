@@ -30,6 +30,6 @@ tenacity
 TgCrypto-pyrofork
 urllib3
 uvicorn
-uvloop
+uvloop!=0.22.1
 xattr
 yt-dlp[default,curl-cffi]

@@ -30,6 +30,6 @@ requests
 speedtest-cli
 tenacity
 TgCrypto-pyrofork
-uvloop
+uvloop!=0.22.1
 vcsi
 xmltodict
