@@ -7,13 +7,14 @@ emoji
 flask
 gallery-dl
 gevent
+git+https://github.com/vevv/subby
 google-genai
 gradio_client
 gunicorn
 httpx
 humanize
 kurigram
-langcodes
+langcodes[data]
 lxml
 m3u8
 mal-api
