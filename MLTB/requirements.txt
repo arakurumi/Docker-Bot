@@ -18,8 +18,8 @@ kurigram
 lxml
 natsort
 pillow
-pproxy[accelerated]
 psutil
+pycryptodome
 pycurl
 pymongo
 python-magic
@@ -27,9 +27,9 @@ requests
 speedtest-cli
 telegraph
 tenacity
-TgCrypto2
+TgCrypto
 urllib3
 uvicorn
-uvloop!=0.22.1
+uvloop
 xattr
 yt-dlp[default,curl-cffi]
