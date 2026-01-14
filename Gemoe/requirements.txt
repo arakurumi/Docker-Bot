@@ -1,6 +1,5 @@
 aiofiles
 aioshutil
-apscheduler
 bs4
 deep-translator
 emoji
@@ -9,7 +8,6 @@ gallery-dl
 gevent
 git+https://github.com/vevv/subby
 google-genai
-gradio_client
 gunicorn
 httpx
 humanize
@@ -19,7 +17,6 @@ lxml
 m3u8
 mal-api
 mutagen
-openai
 Pillow
 psutil
 pycryptodome

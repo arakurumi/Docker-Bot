@@ -3,7 +3,6 @@ aiofiles
 aioqbt
 aioshutil
 anytree
-apscheduler
 beautifulsoup4
 cloudscraper
 fastapi

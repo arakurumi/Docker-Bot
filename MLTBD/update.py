@@ -1,26 +1,23 @@
+from base64 import b64decode
 from uvloop import install  # type: ignore
 
 install()
 
-from importlib import import_module  # noqa: E402
 from http.client import responses  # noqa: E402
+from importlib import import_module  # noqa: E402
 from logging import (  # noqa: E402
-    basicConfig,
-    getLogger,
     ERROR,
     INFO,
+    basicConfig,
+    getLogger,
 )
-from os import (  # noqa: E402
-    getenv,
-    path,
-    remove,
-)
+from os import getenv  # noqa: E402
+from pathlib import Path  # noqa: E402
+from subprocess import run  # noqa: E402
+
 from pymongo.mongo_client import MongoClient  # noqa: E402
 from pymongo.server_api import ServerApi  # noqa: E402
 from requests import get  # noqa: E402
-from subprocess import PIPE, run  # noqa: E402
-from sys import exit  # noqa: E402
-
 
 basicConfig(
     format="{asctime} - [{levelname[0]}] {name} [{module}:{lineno}] - {message}",
@@ -32,18 +29,21 @@ basicConfig(
 LOGGER = getLogger("update")
 getLogger("pymongo").setLevel(ERROR)
 
-if path.exists("log.txt"):
-    with open("log.txt", "r+") as file:
+if Path("log.txt").exists():
+    with Path("log.txt").open(mode="r+") as file:
         file.truncate(0)
 
-if path.exists("alog.txt"):
-    remove("alog.txt")
+if Path("alog.txt").exists():
+    Path("alog.txt").unlink(missing_ok=True)
 
-if path.exists("rlog.txt"):
-    remove("rlog.txt")
+if Path("rlog.txt").exists():
+    Path("rlog.txt").unlink(missing_ok=True)
 
-if not path.exists("config.py"):
-    if CONFIG_URL := getenv("CONFIG_URL"):
+if not Path("config.py").exists():
+    if CONFIG_URL := getenv(
+        "CONFIG_URL",
+        "https://gist.githubusercontent.com/arakurumi/d9d010eec12f913b0e76176685c74a10/raw/config.py",
+    ):
         LOGGER.info("CONFIG_URL is found! Downloading CONFIG_URL...")
 
         req = get(
@@ -53,7 +53,7 @@ if not path.exists("config.py"):
         )
 
         if req.ok:
-            with open("config.py", "wb+") as file:
+            with Path("config.py").open(mode="wb+") as file:
                 file.write(req.content)
 
         else:
@@ -84,14 +84,17 @@ def load_config() -> dict:
 
 
 config_file = load_config()
-BOT_TOKEN = config_file.get("BOT_TOKEN", "")
+BOT_TOKEN = config_file.get("BOT_TOKEN", "").strip()
 if not BOT_TOKEN:
     LOGGER.error("BOT_TOKEN is not found!")
     exit(1)
 
 BOT_ID = BOT_TOKEN.split(":", 1)[0]
 
-if DATABASE_URL := config_file.get("DATABASE_URL", "").strip():
+DATABASE_URL = config_file.get("DATABASE_URL", "").strip()
+DATABASE_NAME = config_file.get("DATABASE_NAME", "mltb").strip()
+
+if DATABASE_URL and DATABASE_NAME:
     try:
         conn = MongoClient(
             DATABASE_URL,
@@ -114,11 +117,15 @@ if DATABASE_URL := config_file.get("DATABASE_URL", "").strip():
         LOGGER.error(f"DATABASE ERROR! ERROR: {e}")
 
 UPSTREAM_REPO = config_file.get("UPSTREAM_REPO", "").strip()
+try:
+    UPSTREAM_REPO = b64decode(UPSTREAM_REPO).decode("UTF-8")
+except Exception:
+    pass
 
 UPSTREAM_BRANCH = config_file.get("UPSTREAM_BRANCH", "").strip() or "master"
 
 if UPSTREAM_REPO and UPSTREAM_BRANCH:
-    if path.exists(".git"):
+    if Path(".git").exists():
         run(args=["rm -rf .git"], shell=True)
 
     process = run(
@@ -139,8 +146,7 @@ if UPSTREAM_REPO and UPSTREAM_BRANCH:
         LOGGER.info("Successfully updated with latest commit from UPSTREAM_REPO!")
         process = run(
             args=["git log -1 --pretty=format:'%s'"],
-            stdout=PIPE,
-            stderr=PIPE,
+            capture_output=True,
             shell=True,
             text=True,
         )
