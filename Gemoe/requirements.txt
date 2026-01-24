@@ -19,6 +19,7 @@ mal-api
 mutagen
 Pillow
 psutil
+pybase62
 pycryptodome
 pycurl
 python-dotenv
