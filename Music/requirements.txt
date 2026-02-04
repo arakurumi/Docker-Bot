@@ -1,0 +1,16 @@
+aiofiles
+aioshutil
+httpx
+kurigram
+m3u8
+mutagen
+Pillow
+psutil
+pycryptodome
+pygments
+python-dotenv
+python-magic
+pywidevine
+TgCrypto2
+uvloop!=0.22.1
+xmltodict
