@@ -9,9 +9,9 @@ COPY . /
 
 RUN apt-get install --yes python3-venv
 
-RUN python -m venv --system-site-packages gemoe
+RUN python -m venv --system-site-packages music
 
-RUN /gemoe/bin/pip install --no-cache-dir --requirement requirements.txt
+RUN /music/bin/pip install --no-cache-dir --requirement requirements.txt
 
 FROM arakurumi/myne:ubuntu
 
