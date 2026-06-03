@@ -10,7 +10,6 @@ google-genai
 grpcio
 grpcio-tools
 gunicorn
-httpx
 humanize
 kurigram
 langcodes[data]
@@ -31,5 +30,6 @@ tenacity
 TgCrypto
 uvloop
 vcsi
+wreq
 xmltodict
 yt-dlp
