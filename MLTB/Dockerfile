@@ -2,7 +2,7 @@ FROM arakurumi/mltb:latest AS builder
 
 COPY . /
 
-RUN apk add --no-cache --virtual BuildDependency clang compiler-rt curl-dev linux-headers
+RUN apk add --no-cache --virtual BuildDependency clang compiler-rt curl-dev linux-headers python3-dev
 
 RUN python -m venv --system-site-packages mltb
 
