@@ -1,0 +1,61 @@
+name: Build and Push MLTB Image
+
+on:
+  push:
+    paths:
+      - "MLTB/Dockerfile"
+      - "MLTB/setup"
+
+  schedule:
+    - cron: "0 0 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Docker.io
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Login to Docker.io
+        uses: docker/login-action@master
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Metadata
+        id: meta
+        uses: docker/metadata-action@master
+        with:
+          tags: |
+            mltb
+          images: |
+            arakurumi/bot
+          labels: |
+            org.opencontainers.image.authors=Kurumi <kqruumi@gmail.com>
+            org.opencontainers.image.description=Docker Images for My Bot
+            org.opencontainers.image.licenses=Unlicense
+            org.opencontainers.image.source=https://github.com/arakurumi/docker-bot
+            org.opencontainers.image.title=Docker-Bot
+            org.opencontainers.image.url=https://github.com/arakurumi/docker-bot
+            org.opencontainers.image.version=MLTB
+          annotations: |
+            org.opencontainers.image.description=Docker Images for My Bot
+            org.opencontainers.image.licenses=Unlicense
+            org.opencontainers.image.source=https://github.com/arakurumi/docker-bot
+            org.opencontainers.image.title=Docker-Bot
+            org.opencontainers.image.url=https://github.com/arakurumi/docker-bot
+            org.opencontainers.image.version=MLTB
+
+      - name: Build and Push to Docker.io
+        uses: docker/build-push-action@master
+        with:
+          push: true
+          context: "{{defaultContext}}:MLTB"
+          no-cache: true
+          provenance: false
+          platforms: linux/amd64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
