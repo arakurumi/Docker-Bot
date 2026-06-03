@@ -2,7 +2,13 @@ FROM arakurumi/mltb:latest AS builder
 
 COPY . /
 
-RUN apk add --no-cache --virtual build-dependency clang compiler-rt curl-dev linux-headers musl-dev python3-dev
+ENV CC=clang
+
+ENV CXX=clang++
+
+ENV LD=ld.lld
+
+RUN apk add --no-cache --virtual build-dependency clang compiler-rt curl-dev linux-headers python3-dev
 
 RUN python -m venv --system-site-packages mltb
 
