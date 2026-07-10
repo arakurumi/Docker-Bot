@@ -4,7 +4,7 @@ aioqbt
 aioshutil
 anytree
 beautifulsoup4
-cloudscraper
+curl-cffi
 fastapi
 feedparser
 gallery-dl
@@ -25,7 +25,6 @@ pymongo
 python-magic
 requests
 speedtest-cli
-telegraph
 tenacity
 TgCrypto
 urllib3
