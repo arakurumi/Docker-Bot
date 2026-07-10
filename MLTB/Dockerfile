@@ -2,19 +2,13 @@ FROM arakurumi/mltb:latest AS builder
 
 COPY . /
 
-ENV CC=clang
+RUN sed -i 's/\r$//' *.sh
 
-ENV CXX=clang++
-
-ENV LD=ld.lld
-
-RUN apk add --no-cache --virtual build-dependency clang compiler-rt curl-dev linux-headers python3-dev
+RUN sh patch.sh
 
 RUN python -m venv --system-site-packages mltb
 
 RUN /mltb/bin/pip install --no-cache-dir --requirement requirements.txt
-
-RUN apk del build-dependency
 
 FROM arakurumi/mltb:latest
 
