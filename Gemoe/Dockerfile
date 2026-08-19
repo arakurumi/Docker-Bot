@@ -2,6 +2,8 @@ FROM arakurumi/myne:debian AS builder
 
 COPY . /
 
+ENV CC=gcc CXX=g++
+
 RUN apt update && apt install --yes build-essential libfreetype6-dev libjpeg-dev zlib1g-dev libcurl4-openssl-dev libssl-dev
 
 RUN python -m venv --system-site-packages gemoe
