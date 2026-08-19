@@ -1,4 +1,4 @@
-FROM arakurumi/myne:ubuntu AS builder
+FROM arakurumi/myne:debian AS builder
 
 COPY . /
 
@@ -10,7 +10,7 @@ RUN /gemoe/bin/pip install --no-cache-dir --requirement requirements.txt
 
 RUN apt remove --yes build-essential libfreetype6-dev libjpeg-dev python3-dev
 
-FROM arakurumi/myne:ubuntu
+FROM arakurumi/myne:debian
 
 COPY --from=builder / /
 
