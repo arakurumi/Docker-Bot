@@ -2,13 +2,13 @@ FROM arakurumi/myne:debian AS builder
 
 COPY . /
 
-RUN apt install --yes build-essential libfreetype6-dev libjpeg-dev python3-dev python3-venv
+RUN apt update && apt install --yes libfreetype6-dev libjpeg-dev
 
 RUN python -m venv --system-site-packages gemoe
 
 RUN /gemoe/bin/pip install --no-cache-dir --requirement requirements.txt
 
-RUN apt remove --yes build-essential libfreetype6-dev libjpeg-dev python3-dev
+RUN apt remove --yes libfreetype6-dev libjpeg-dev && rm -rf /var/lib/apt/lists /var/cache/apt /tmp/* /root/.cache
 
 FROM arakurumi/myne:debian
 
