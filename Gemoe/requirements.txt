@@ -3,13 +3,11 @@ aioshutil
 bs4
 curl-cffi
 deep-translator
-flask
 gallery-dl
 gevent
 git+https://github.com/vevv/subby
 grpcio
 grpcio-tools
-gunicorn
 humanize
 kurigram
 langcodes[data]
