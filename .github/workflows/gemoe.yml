@@ -13,20 +13,20 @@ on:
 
 jobs:
   build:
-    name: Docker.io
+    name: Build and Push Image
 
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Login to Docker.io
-        uses: docker/login-action@master
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker Metadata
+      - name: Set Up Docker Metadata
         id: meta
-        uses: docker/metadata-action@master
+        uses: docker/metadata-action@v6
         with:
           tags: |
             gemoe
@@ -35,21 +35,12 @@ jobs:
           labels: |
             org.opencontainers.image.authors=Kurumi <kqruumi@gmail.com>
             org.opencontainers.image.description=Docker Images for My Bot
-            org.opencontainers.image.licenses=Unlicense
-            org.opencontainers.image.source=https://github.com/arakurumi/docker-bot
+            org.opencontainers.image.licenses=MIT
             org.opencontainers.image.title=Docker-Bot
-            org.opencontainers.image.url=https://github.com/arakurumi/docker-bot
-            org.opencontainers.image.version=Gemoe
-          annotations: |
-            org.opencontainers.image.description=Docker Images for My Bot
-            org.opencontainers.image.licenses=Unlicense
-            org.opencontainers.image.source=https://github.com/arakurumi/docker-bot
-            org.opencontainers.image.title=Docker-Bot
-            org.opencontainers.image.url=https://github.com/arakurumi/docker-bot
-            org.opencontainers.image.version=Gemoe
+            org.opencontainers.image.version={{date 'YYYYMMDD'}}
 
       - name: Build and Push to Docker.io
-        uses: docker/build-push-action@master
+        uses: docker/build-push-action@v7
         with:
           push: true
           context: "{{defaultContext}}:Gemoe"
@@ -58,4 +49,3 @@ jobs:
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          annotations: ${{ steps.meta.outputs.annotations }}

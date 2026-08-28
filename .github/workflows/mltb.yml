@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Docker.io
+    name: Build and Push Image
 
     runs-on: ubuntu-24.04
 
@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker Metadata
+      - name: Set Up Docker Metadata
         id: meta
         uses: docker/metadata-action@master
         with:
@@ -35,18 +35,9 @@ jobs:
           labels: |
             org.opencontainers.image.authors=Kurumi <kqruumi@gmail.com>
             org.opencontainers.image.description=Docker Images for My Bot
-            org.opencontainers.image.licenses=Unlicense
-            org.opencontainers.image.source=https://github.com/arakurumi/docker-bot
+            org.opencontainers.image.licenses=MIT
             org.opencontainers.image.title=Docker-Bot
-            org.opencontainers.image.url=https://github.com/arakurumi/docker-bot
-            org.opencontainers.image.version=MLTB
-          annotations: |
-            org.opencontainers.image.description=Docker Images for My Bot
-            org.opencontainers.image.licenses=Unlicense
-            org.opencontainers.image.source=https://github.com/arakurumi/docker-bot
-            org.opencontainers.image.title=Docker-Bot
-            org.opencontainers.image.url=https://github.com/arakurumi/docker-bot
-            org.opencontainers.image.version=MLTB
+            org.opencontainers.image.version={{date 'YYYYMMDD'}}
 
       - name: Build and Push to Docker.io
         uses: docker/build-push-action@master
@@ -58,4 +49,3 @@ jobs:
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          annotations: ${{ steps.meta.outputs.annotations }}
