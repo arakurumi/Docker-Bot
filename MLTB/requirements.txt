@@ -3,16 +3,13 @@ aiofiles
 aioqbt
 aioshutil
 anytree
-beautifulsoup4
 curl-cffi
 fastapi
-feedparser
 gallery-dl
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
 gunicorn
-httpx
 jinja2
 kurigram
 lxml
@@ -30,5 +27,4 @@ TgCrypto
 urllib3
 uvicorn
 uvloop
-xattr
 yt-dlp[default,curl-cffi]
