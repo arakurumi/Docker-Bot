@@ -2,7 +2,6 @@ aiofiles
 aioshutil
 bs4
 curl-cffi
-deep-translator
 gallery-dl
 gevent
 git+https://github.com/vevv/subby
