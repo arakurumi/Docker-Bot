@@ -25,5 +25,4 @@ speedtest-cli
 tenacity
 urllib3
 uvicorn
-uvloop
 yt-dlp[default,curl-cffi]

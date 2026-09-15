@@ -8,7 +8,7 @@ git+https://github.com/vevv/subby
 grpcio
 grpcio-tools
 humanize
-kurigram
+kurigram[fast]
 langcodes[data]
 lxml
 m3u8
@@ -25,8 +25,6 @@ pywidevine
 requests
 speedtest-cli
 tenacity
-TgCrypto
-uvloop
 vcsi
 xmltodict
 yt-dlp[default,curl-cffi]
