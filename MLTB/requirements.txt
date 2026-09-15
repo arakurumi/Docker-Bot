@@ -11,7 +11,7 @@ google-auth-httplib2
 google-auth-oauthlib
 gunicorn
 jinja2
-kurigram
+kurigram[fast]
 lxml
 natsort
 pillow
@@ -23,7 +23,6 @@ python-magic
 requests
 speedtest-cli
 tenacity
-TgCrypto
 urllib3
 uvicorn
 uvloop
