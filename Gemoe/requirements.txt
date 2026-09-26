@@ -24,6 +24,7 @@ python-magic
 pywidevine
 requests
 speedtest-cli
+temari
 tenacity
 vcsi
 xmltodict
