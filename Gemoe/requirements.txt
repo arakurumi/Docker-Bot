@@ -8,6 +8,7 @@ kurigram[fast]
 langcodes[data]
 lxml
 m3u8
+mal-api
 mutagen
 Pillow
 psutil
