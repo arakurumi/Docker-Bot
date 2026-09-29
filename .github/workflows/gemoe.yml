@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - "Gemoe/Dockerfile"
-      - "Gemoe/setup"
+      - "Gemoe/requirements.txt"
 
   schedule:
     - cron: "0 0 * * *"

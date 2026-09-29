@@ -4,7 +4,8 @@ on:
   push:
     paths:
       - "MLTB/Dockerfile"
-      - "MLTB/setup"
+      - "MLTB/patch.sh"
+      - "MLTB/requirements.txt"
 
   schedule:
     - cron: "0 0 * * *"
